@@ -1,7 +1,7 @@
 (function (window) {
     window.YourChatbot = {
         init: function () {
-            const scriptTag = document.querySelector('script[src*="customcode.js"]');
+            const scriptTag = document.querySelector('script[src*="collabai_custom_embedded.js"]');
             if (!scriptTag) {
                 console.error("Chatbot script tag not found.");
                 return;
