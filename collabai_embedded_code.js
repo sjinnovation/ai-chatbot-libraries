@@ -49,112 +49,37 @@
           width: 130px;
           height: 130px;
           object-fit: cover;
-          border-radius: 0;
-        }
-
-        #assistant-embed-container .navbar {
-          display: none !important;
-        }
-        
-      .embed-button-hide{
-          display: none;
         }
 
         @media (max-width: 425px) {
-  .botMessageWrapper {
-    max-width: 90%;  
-    min-width: unset;
-    flex-direction: column;
-    column-gap: 0;
-    padding: 8px;
-    left: 20px;
-    margin-right: 40px;
-  }
-  .botMessageMainContainer {
-    min-width: unset;
-  }
-  .infinite-scroll-component {
-    overflow-x: hidden !important; 
-    width: 100% !important;  
-  }
-}
+          #assistant-embed {
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+          }
+        }
       </style>
   `;
   document.body.appendChild(container);
 
   if (assistantName && assistantId) {
-      // document.getElementById("chatbot-iframe").src = `http://localhost:3000/agents/${assistantId}?embedded=true`;
     document.getElementById("chatbot-iframe").src = `https://collaborativeai-dev.managedcoder.com/agents/${assistantId}?embedded=true`;
-      console.log(`Iframe src set to: https://collabai.buildyourai.consulting/${assistantId}`);
+    console.log(`Iframe src set to: https://collaborativeai-dev.managedcoder.com/agents/${assistantId}`);
   } else {
-      console.error("Assistant name or ID not provided.");
+    console.error("Assistant name or ID not provided.");
   }
 
   document.getElementById("chatbot-icon").onclick = function () {
-      document.getElementById("assistant-embed").style.display = "block";
-      document.getElementById("chatbot-icon").style.display = "none";
-      console.log('Chatbot icon clicked, assistant embed shown');
+    document.getElementById("assistant-embed").style.display = "block";
+    document.getElementById("chatbot-icon").style.display = "none";
+    console.log('Chatbot icon clicked, assistant embed shown');
   };
 
   document.getElementById("minimize-button").onclick = function () {
-      document.getElementById("assistant-embed").style.display = "none";
-      document.getElementById("chatbot-icon").style.display = "flex";
-      console.log('Minimize button clicked, assistant embed hidden');
+    document.getElementById("assistant-embed").style.display = "none";
+    document.getElementById("chatbot-icon").style.display = "flex";
+    console.log('Minimize button clicked, assistant embed hidden');
   };
-
-  window.addEventListener("DOMContentLoaded", function () {
-      const header = document.querySelector(".navbar");
-      if (header) {
-          header.style.display = "none";
-          console.log('Header hidden');
-      } else {
-          console.error('Header not found');
-      }
-  });
-
-  const iframe = document.getElementById("chatbot-iframe");
-  iframe.onload = function () {
-      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-      const iframeObserver = new MutationObserver(function (mutationsList) {
-          mutationsList.forEach((mutation) => {
-              const elements = iframeDocument.querySelectorAll(".botMessageWrapper");
-              if (elements.length > 0) {
-                  console.log(`${elements.length} .botMessageWrapper elements found`);
-                  elements.forEach((element) => {
-                      if (!element.classList.contains("styled-bot-message")) {
-                          element.style.maxWidth = "100%";
-                          element.style.minWidth = "unset";
-                          element.style.flexDirection = "column";
-                          element.style.columnGap = "0";
-                          element.style.padding = "8px";
-                          element.style.left = "-218px";
-                          element.classList.add("styled-bot-message"); 
-                          console.log("Applied styles to .botMessageWrapper");
-                      }
-                  });
-              }
-          });
-      });
-
-      iframeObserver.observe(iframeDocument.body, { childList: true, subtree: true });
-  };
-
-  setInterval(() => {
-      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-      if (iframeDocument) {
-          const elements = iframeDocument.querySelectorAll(".botMessageWrapper");
-          elements.forEach((element) => {
-              if (!element.classList.contains("styled-bot-message")) {
-                  element.style.maxWidth = "100%";
-                  element.style.minWidth = "unset";
-                  element.style.flexDirection = "column";
-                  element.style.columnGap = "0";
-                  element.style.padding = "8px";
-                  element.style.left = "-218px";
-                  element.classList.add("styled-bot-message");
-              }
-          });
-      }
-  }, 1000); 
 })();
