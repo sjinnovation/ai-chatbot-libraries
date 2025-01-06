@@ -7,6 +7,7 @@
   const scriptTag = document.currentScript || document.querySelector('script[data-assistant-name][data-assistant-id]');
   const assistantName = scriptTag.getAttribute('data-assistant-name');
   const assistantId = scriptTag.getAttribute('data-assistant-id');
+  const baseUrl = scriptTag.getAttribute('data-base-url');
   const container = document.createElement("div");
 
   console.log('Embedded script loaded');
@@ -64,9 +65,10 @@
   `;
   document.body.appendChild(container);
 
-  if (assistantName && assistantId) {
-    document.getElementById("chatbot-iframe").src = `https://collaborativeai-dev.managedcoder.com/agents/${assistantId}?embedded=true`;
-    console.log(`Iframe src set to: https://collaborativeai-dev.managedcoder.com/agents/${assistantId}`);
+  iif (assistantName && assistantId && baseUrl) {
+    const iframeSrc = `${baseUrl}/agents/${assistantId}?embedded=true`;
+    document.getElementById("chatbot-iframe").src = iframeSrc;
+    console.log(`Iframe src set to: ${iframeSrc}`);
   } else {
     console.error("Assistant name or ID not provided.");
   }
