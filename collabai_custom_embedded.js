@@ -13,6 +13,7 @@
             const textColor = scriptTag.getAttribute('data-text-color') || '#d1d5db';
             const fontSize = scriptTag.getAttribute('data-font-size') || '16px';
             const themeColor = scriptTag.getAttribute('data-theme-color') || '#0F91F2';
+            const baseUrl = scriptTag.getAttribute('data-base-url');
 
             console.log("Chatbot API initialized with options:", { assistantName, assistantId, color, textColor, fontSize, themeColor });
 
@@ -102,8 +103,8 @@
                 return;
             }
 
-            const baseURL = `https://collaborativeai-dev.managedcoder.com/agents/${assistantId}`;
-            const iframeSrc = `${baseURL}?color=${encodeURIComponent(color)}&textColor=${encodeURIComponent(textColor)}&fontSize=${encodeURIComponent(fontSize)}&themeColor=${encodeURIComponent(queryThemeColor)}&embedded=true`;
+         // const baseURL = `https://collaborativeai-dev.managedcoder.com/agents/${assistantId}`;
+            const iframeSrc = `${baseURL}/agents/${assistantId}?color=${encodeURIComponent(color)}&textColor=${encodeURIComponent(textColor)}&fontSize=${encodeURIComponent(fontSize)}&themeColor=${encodeURIComponent(queryThemeColor)}&embedded=true`;
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
 
