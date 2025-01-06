@@ -65,7 +65,7 @@
   `;
   document.body.appendChild(container);
 
-  iif (assistantName && assistantId && baseUrl) {
+  if (assistantName && assistantId && baseUrl) {
     const iframeSrc = `${baseUrl}/agents/${assistantId}?embedded=true`;
     document.getElementById("chatbot-iframe").src = iframeSrc;
     console.log(`Iframe src set to: ${iframeSrc}`);
