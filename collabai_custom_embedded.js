@@ -104,7 +104,7 @@
             }
 
          // const baseURL = `https://collaborativeai-dev.managedcoder.com/agents/${assistantId}`;
-            const iframeSrc = `${baseURL}/agents/${assistantId}?color=${encodeURIComponent(color)}&textColor=${encodeURIComponent(textColor)}&fontSize=${encodeURIComponent(fontSize)}&themeColor=${encodeURIComponent(queryThemeColor)}&embedded=true`;
+            const iframeSrc = `${baseUrl}/agents/${assistantId}?color=${encodeURIComponent(color)}&textColor=${encodeURIComponent(textColor)}&fontSize=${encodeURIComponent(fontSize)}&themeColor=${encodeURIComponent(queryThemeColor)}&embedded=true`;
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
 
